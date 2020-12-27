@@ -9,10 +9,12 @@ const SearchResults = ({ employeesList }) => {
     });
 
     const handleShowModal = (data, e) => {
+        e.preventDefault()
         setModal({ isDisplayed: true, employeeInfo: data });
 
     };
-    const handleCloseModal = () => {
+    const handleCloseModal = (e) => {
+        e.preventDefault()
         setModal({ isDisplayed: false });
     };
 

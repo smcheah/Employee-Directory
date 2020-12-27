@@ -2,20 +2,33 @@ import React from "react";
 import "./style.css";
 
 const EmployeeModal = ({ isDisplayed, employeeInfo, handleCloseModal }) => {
+    let toggleModal;
 
-    const toggleModal = isDisplayed ? "modal display-block" : "modal display-none";
+    if (isDisplayed) {
+        toggleModal = "modal display-block";
 
-    const { name, image, role, gender, dateOfBirth, email } = employeeInfo;
+        const { name, image, role, gender, dateOfBirth, email } = employeeInfo;
 
-    return <div className={ toggleModal }>
-        <div className="modal-main">
-            <h1>{ name }</h1>
-            <img src={ image } alt="employee portrait" />
+        return <div className={ toggleModal }>
+            <div className="modal-main">
+                <button onClick={ handleCloseModal }>close</button>
+                <img src={ image } alt="employee portrait" />
 
-            <p>hello world</p>
-            <button onClick={ handleCloseModal }>close</button>
-        </div>
-    </div>;
+                <h1>{ name }</h1>
+                <p>{ role }</p>
+
+                <p>Gender: { gender }</p>
+                <p>Date of birth: { dateOfBirth }</p>
+
+                <p>Contact: { email }</p>
+
+                <p>LinkedIn</p>
+            </div>
+        </div>;
+    }
+
+    toggleModal = "modal display-none";
+    return null;
 };
 
 export default EmployeeModal;
