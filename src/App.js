@@ -11,19 +11,11 @@ import employeesList from "./data/employees.json";
 // the table of contents
 const App = () => {
 
-    // const [state, setState] = useState({
-
-    // });
-
-
-
     return <Router>
         <Navbar />
         <main>
             <SearchAndSort />
             <SearchResults { ...{ employeesList } } />
-            {/* passed a prop through to SearchResults */ }
-            {/* <EmployeeModal /> */ }
         </main>
         {/* <Footer /> */ }
     </Router >;
