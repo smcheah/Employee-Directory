@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import EmployeeModal from "./EmployeeModal/EmployeeModal";
 
 const SearchResults = ({ employeesList }) => {
 
+    const [modal, setModal] = useState({
+        isDisplayed: false,
+        employeeInfo: ""
+    });
 
-    return <ul>
-        { employeesList.map(({ name, image, role, gender, dateOfBirth, email }) => (
-            <li key={ image } onClick={ showModal }>
-                <div>{ name }</div>
-                <div>{ role }</div>
-                <div>{ gender }</div>
-                <div>{ dateOfBirth }</div>
-                <div>{ email }</div>
-            </li>
-        )) }
-    </ul>;
+    const handleShowModal = (data, e) => {
+        setModal({ isDisplayed: true, employeeInfo: data });
+
+    };
+    const handleCloseModal = () => {
+        setModal({ isDisplayed: false });
+    };
+
+    return <div>
+        <EmployeeModal
+            isDisplayed={ modal.isDisplayed }
+            employeeInfo={ modal.employeeInfo }
+            handleCloseModal={ handleCloseModal } />
+            
+        <ul>
+            { employeesList.map(({ name, id, image, role, gender, dateOfBirth, email }) => (
+                <li key={ id } onClick={ (e) => handleShowModal({ name, image, role, gender, dateOfBirth, email }, e) }>
+                    <div>{ name }</div>
+                    <div>{ image }</div>
+                    <div>{ role }</div>
+                    <div>{ gender }</div>
+                    <div>{ dateOfBirth }</div>
+                    <div>{ email }</div>
+                </li>
+            )) }
+        </ul>;
+    </div>;
+
 };
 
 export default SearchResults;
