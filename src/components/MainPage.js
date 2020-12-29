@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import EmployeeModal from "./EmployeeModal/EmployeeModal";
 import EmployeeList from "./EmployeeList/EmployeeList";
 
@@ -11,10 +11,11 @@ const MainPage = ({ employees }) => {
     const [filtered, setFiltered] = useState({
         employeeList: employees
     });
+    const [sortToggle, setSortToggle] = useState(false);
 
-    useEffect(() => {
-        console.log("filtered state: ", filtered);
-    }, [filtered]);
+    // useEffect(() => {
+    //     console.log("filtered state: ", filtered);
+    // }, [filtered]);
 
     //modal
     const handleShowModal = (data, e) => {
@@ -28,33 +29,56 @@ const MainPage = ({ employees }) => {
     };
 
     // search and sort
+    const sortFrom = (a, b, char, from, to) => {
+        let charA = a[char].toUpperCase();
+        let charB = b[char].toUpperCase();
+        if (charA < charB) return from;
+        if (charA > charB) return to;
+        return 0;
+    };
+
     const sortBy = (char, e) => {
         e.preventDefault();
 
-        employees.sort(function (a, b) {
-            let charA = a[char].toUpperCase();
-            let charB = b[char].toUpperCase();
-            if (charA < charB) return -1;
-            if (charA > charB) return 1;
-            return 0;
-        });
-
+        if (sortToggle === false) {
+            setSortToggle(true);
+            employees.sort(function (a, b) {
+                return sortFrom(a, b, char, -1, 1);
+            });
+        } else {
+            setSortToggle(false);
+            employees.sort(function (a, b) {
+                return sortFrom(a, b, char, 1, -1);
+            });
+        }
         setFiltered({ employeeList: employees });
-    }; 
+    };
 
     const sortByDOB = (e) => {
         e.preventDefault();
 
         // sort by value
-        employees.sort(function (a, b) {
-            let arrA = a.dateOfBirth.split("/");
-            let arrB = b.dateOfBirth.split("/");
-            let dateA = new Date(arrA[2], arrA[1], arrA[0]);
-            let dateB = new Date(arrB[2], arrB[1], arrB[0]);
+        if (sortToggle === false) {
+            setSortToggle(true);
+            employees.sort(function (a, b) {
+                let arrA = a.dateOfBirth.split("/");
+                let arrB = b.dateOfBirth.split("/");
+                let dateA = new Date(arrA[2], arrA[1], arrA[0]);
+                let dateB = new Date(arrB[2], arrB[1], arrB[0]);
 
-            return dateA - dateB;
-        });
+                return dateA - dateB;
+            });
+        } else {
+            setSortToggle(false);
+            employees.sort(function (a, b) {
+                let arrA = a.dateOfBirth.split("/");
+                let arrB = b.dateOfBirth.split("/");
+                let dateA = new Date(arrA[2], arrA[1], arrA[0]);
+                let dateB = new Date(arrB[2], arrB[1], arrB[0]);
 
+                return dateB - dateA;
+            });
+        }
         setFiltered({ employeeList: employees });
     };
 
@@ -74,8 +98,6 @@ const MainPage = ({ employees }) => {
                 <button onClick={ sortByDOB }>D.O.B</button>
                 <button onClick={ e => sortBy("gender", e) }>Gender</button>
             </div>
-
-            <button type="submit">Submit</button>
 
         </form>
 
