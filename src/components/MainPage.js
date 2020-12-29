@@ -12,6 +12,10 @@ const MainPage = ({ employees }) => {
         employeeList: employees
     });
 
+    useEffect(() => {
+        console.log("filtered state: ", filtered);
+    }, [filtered]);
+
     //modal
     const handleShowModal = (data, e) => {
         e.preventDefault();
@@ -24,46 +28,34 @@ const MainPage = ({ employees }) => {
     };
 
     // search and sort
-    useEffect(() => {
-        console.log("filtered state: ", filtered);
-    }, [filtered]);
-
-    const sortByName = (e) => {
+    const sortBy = (char, e) => {
         e.preventDefault();
-        let tempArr = employees;
-        tempArr.sort(function (a, b) {
-            let nameA = a.name.toUpperCase();
-            let nameB = b.name.toUpperCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
+
+        employees.sort(function (a, b) {
+            let charA = a[char].toUpperCase();
+            let charB = b[char].toUpperCase();
+            if (charA < charB) return -1;
+            if (charA > charB) return 1;
             return 0;
         });
 
-        setFiltered({ employeeList: tempArr });
+        setFiltered({ employeeList: employees });
+    }; 
+
+    const sortByDOB = (e) => {
+        e.preventDefault();
 
         // sort by value
-        // items.sort(function (a, b) {
-        //     return a.value - b.value;
-        // });
-    };
+        employees.sort(function (a, b) {
+            let arrA = a.dateOfBirth.split("/");
+            let arrB = b.dateOfBirth.split("/");
+            let dateA = new Date(arrA[2], arrA[1], arrA[0]);
+            let dateB = new Date(arrB[2], arrB[1], arrB[0]);
 
-    const sortByRole = (e) => {
-        e.preventDefault();
-        let tempArr = employees;
-        tempArr.sort(function (a, b) {
-            let roleA = a.role.toUpperCase();
-            let roleB = b.role.toUpperCase();
-            if (roleA < roleB) return -1;
-            if (roleA > roleB) return 1;
-            return 0;
+            return dateA - dateB;
         });
 
-        setFiltered({ employeeList: tempArr });
-
-        // sort by value
-        // items.sort(function (a, b) {
-        //     return a.value - b.value;
-        // });
+        setFiltered({ employeeList: employees });
     };
 
     return <div>
@@ -77,12 +69,10 @@ const MainPage = ({ employees }) => {
 
             <label htmlFor="sort-by">Sort By</label>
             <div id="sort-by">
-                <button onClick={ e => sortByName(e) }>Name</button>
-                <button onClick={ e => sortByRole(e) }>Role</button>
-                {/* <button onClick={ sortByDOB }>D.O.B</button>
+                <button onClick={ e => sortBy("name", e) }>Name</button>
+                <button onClick={ e => sortBy("role", e) }>Role</button>
                 <button onClick={ sortByDOB }>D.O.B</button>
-                <button onClick={ sortByAsc }>asc</button>
-                <button onClick={ sortByDesc }>desc</button> */}
+                <button onClick={ e => sortBy("gender", e) }>Gender</button>
             </div>
 
             <button type="submit">Submit</button>
