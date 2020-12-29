@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import EmployeeModal from "./EmployeeModal/EmployeeModal";
 import EmployeeList from "./EmployeeList/EmployeeList";
 
+
+
 const MainPage = ({ employees }) => {
 
     const [modal, setModal] = useState({
@@ -12,10 +14,8 @@ const MainPage = ({ employees }) => {
         employeeList: employees
     });
     const [sortToggle, setSortToggle] = useState(false);
-
-    // useEffect(() => {
-    //     console.log("filtered state: ", filtered);
-    // }, [filtered]);
+    // const [searchInput, setSearch] = useState({ search: "" })
+    const [search, setSearch] = useState("")
 
     //modal
     const handleShowModal = (data, e) => {
@@ -82,13 +82,21 @@ const MainPage = ({ employees }) => {
         setFiltered({ employeeList: employees });
     };
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearch(search);
+        console.log(search);
+    };
+
+    const onChangeHandler = (e) => setSearch(e.target.value);
+
     return <div>
 
         <form className="searchandfilter">
 
             <label>Search by name, id, role or email</label>
-            <input type="search" name="search-term" id="search-term" placeholder="search term" />
-            <button>search</button>
+            <input type="search" name="search" value={ search } onChange={ onChangeHandler } placeholder="search term" />
+            <button onClick={ handleSearch }>search</button>
             <br />
 
             <label htmlFor="sort-by">Sort By</label>
