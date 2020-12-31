@@ -1,0 +1,29 @@
+.searchandsort {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+	margin: 0 auto;
+}
+.searchandsort button,
+.searchandsort input {
+	font-size: 16px;
+    margin-left: 5px;
+    padding: 0 7px;
+}
+.searchandsort input {
+    width: 400px;
+}
+.searchandsort label {
+	margin-right: 5px;
+}
+.search *,
+.sort-by * {
+	margin-bottom: 10px;
+	font-family: "Baloo 2", cursive;
+	font-size: 20px;
+}
+.search button:first-of-type {
+    background-color: rgb(215, 245, 255);
+    border: 1px solid black;
+    border-radius: 2px;
+}
