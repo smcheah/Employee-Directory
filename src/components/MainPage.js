@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import EmployeeModal from "./EmployeeModal/EmployeeModal";
 import EmployeeList from "./EmployeeList/EmployeeList";
-
+import Search from "./Search";
+import SortBy from "./SortBy";
 
 
 const MainPage = ({ employees }) => {
@@ -116,20 +117,16 @@ const MainPage = ({ employees }) => {
 
         <form className="searchandsort">
 
-            <label>Search by name, id, role or email</label>
-            <input type="search" name="search" value={ search } onChange={ onChangeHandler } placeholder="search term" />
-            <button onClick={ handleSearch }>search</button>
-            <br />
-
-            <label htmlFor="sort-by">Sort By</label>
-            <div id="sort-by">
-                <button onClick={ e => sortBy("name", e) }>Name</button>
-                <button onClick={ e => sortBy("role", e) }>Role</button>
-                <button onClick={ sortByDOB }>D.O.B</button>
-                <button onClick={ e => sortBy("gender", e) }>Gender</button>
-            </div>
+            <Search
+                search={ search }
+                onChangeHandler={ onChangeHandler }
+                handleSearch={ handleSearch } />
 
             <button onClick={ handleReset }>reset</button>
+            <br />
+            <SortBy
+                sortBy={ sortBy }
+                sortByDOB={ sortByDOB } />
 
         </form>
 
@@ -138,10 +135,13 @@ const MainPage = ({ employees }) => {
             employeeInfo={ modal.employeeInfo }
             handleCloseModal={ handleCloseModal } />
 
-        {/* move loop to here */ }
-        <EmployeeList
-            handleShowModal={ handleShowModal }
-            results={ sortedList } />
+        <ul>
+            { sortedList.employeeList.map(results => (
+                <EmployeeList
+                    handleShowModal={ handleShowModal }
+                    results={ results } />
+            )) }
+        </ul>
     </div>;
 
 };
