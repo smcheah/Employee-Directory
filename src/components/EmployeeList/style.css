@@ -1,0 +1,24 @@
+/* employee list */
+table {
+    border-collapse: collapse;
+    margin: 10px auto;
+    width: 100%;
+}
+.employee {
+    list-style-type: none;
+}
+.employee:hover :not(th) {
+    backdrop-filter: brightness(0.9);
+    cursor: pointer;
+}
+.employee * {
+    border: black solid 1px;
+    padding: 5px 10px;
+}
+.employee td {
+    word-wrap: break-word;
+    
+}
+.employee td:last-of-type {
+    word-break: break-all;
+}
