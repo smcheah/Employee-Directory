@@ -7,6 +7,7 @@ import SortBy from "./SortBy";
 
 const MainPage = ({ employees }) => {
 
+    // state
     const [modal, setModal] = useState({
         isDisplayed: false,
         employeeInfo: ""
@@ -17,7 +18,7 @@ const MainPage = ({ employees }) => {
     const [sortToggle, setSortToggle] = useState(false);
     const [search, setSearch] = useState("");
 
-    //modal
+    // modal
     const handleShowModal = (data, e) => {
         e.preventDefault();
         setModal({ isDisplayed: true, employeeInfo: data });
@@ -98,11 +99,8 @@ const MainPage = ({ employees }) => {
     const handleSearch = async (e) => {
         e.preventDefault();
         setSearch(search);
-        console.log(search);
-        console.log(sortedList);
 
         const result = await sortedList.employeeList.filter(handleFilter);
-        console.log(result);
         setSortedList({ employeeList: result });
     };
 
