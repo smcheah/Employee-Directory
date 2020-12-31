@@ -10,18 +10,16 @@ const MainPage = ({ employees }) => {
         isDisplayed: false,
         employeeInfo: ""
     });
-    const [filtered, setFiltered] = useState({
+    const [sortedList, setSortedList] = useState({
         employeeList: employees
     });
     const [sortToggle, setSortToggle] = useState(false);
-    // const [searchInput, setSearch] = useState({ search: "" })
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("");
 
     //modal
     const handleShowModal = (data, e) => {
         e.preventDefault();
         setModal({ isDisplayed: true, employeeInfo: data });
-
     };
     const handleCloseModal = (e) => {
         e.preventDefault();
@@ -42,16 +40,16 @@ const MainPage = ({ employees }) => {
 
         if (sortToggle === false) {
             setSortToggle(true);
-            employees.sort(function (a, b) {
+            sortedList.employeeList.sort(function (a, b) {
                 return sortFrom(a, b, char, -1, 1);
             });
         } else {
             setSortToggle(false);
-            employees.sort(function (a, b) {
+            sortedList.employeeList.sort(function (a, b) {
                 return sortFrom(a, b, char, 1, -1);
             });
         }
-        setFiltered({ employeeList: employees });
+        setSortedList({ employeeList: sortedList.employeeList });
     };
 
     const sortByDOB = (e) => {
@@ -60,7 +58,7 @@ const MainPage = ({ employees }) => {
         // sort by value
         if (sortToggle === false) {
             setSortToggle(true);
-            employees.sort(function (a, b) {
+            sortedList.employeeList.sort(function (a, b) {
                 let arrA = a.dateOfBirth.split("/");
                 let arrB = b.dateOfBirth.split("/");
                 let dateA = new Date(arrA[2], arrA[1], arrA[0]);
@@ -70,7 +68,7 @@ const MainPage = ({ employees }) => {
             });
         } else {
             setSortToggle(false);
-            employees.sort(function (a, b) {
+            sortedList.employeeList.sort(function (a, b) {
                 let arrA = a.dateOfBirth.split("/");
                 let arrB = b.dateOfBirth.split("/");
                 let dateA = new Date(arrA[2], arrA[1], arrA[0]);
@@ -79,20 +77,44 @@ const MainPage = ({ employees }) => {
                 return dateB - dateA;
             });
         }
-        setFiltered({ employeeList: employees });
+        setSortedList({ employeeList: sortedList.employeeList });
     };
 
-    const handleSearch = (e) => {
+    const handleFilter = (data) => {
+        const result = search.toUpperCase();
+        const { name, id, role, gender, dateOfBirth, email } = data;
+
+        if (name.toUpperCase() === result ||
+            parseInt(id) === parseInt(search) ||
+            role.toUpperCase() === result ||
+            gender.toUpperCase() === result ||
+            dateOfBirth === search ||
+            email.toUpperCase() === result) {
+            return true;
+        } return false;
+    };
+
+    const handleSearch = async (e) => {
         e.preventDefault();
         setSearch(search);
         console.log(search);
+        console.log(sortedList);
+
+        const result = await sortedList.employeeList.filter(handleFilter);
+        console.log(result);
+        setSortedList({ employeeList: result });
     };
 
     const onChangeHandler = (e) => setSearch(e.target.value);
 
+    const handleReset = (e) => {
+        e.preventDefault();
+        setSortedList({ employeeList: employees });
+    };
+
     return <div>
 
-        <form className="searchandfilter">
+        <form className="searchandsort">
 
             <label>Search by name, id, role or email</label>
             <input type="search" name="search" value={ search } onChange={ onChangeHandler } placeholder="search term" />
@@ -107,6 +129,8 @@ const MainPage = ({ employees }) => {
                 <button onClick={ e => sortBy("gender", e) }>Gender</button>
             </div>
 
+            <button onClick={ handleReset }>reset</button>
+
         </form>
 
         <EmployeeModal
@@ -114,9 +138,10 @@ const MainPage = ({ employees }) => {
             employeeInfo={ modal.employeeInfo }
             handleCloseModal={ handleCloseModal } />
 
+        {/* move loop to here */ }
         <EmployeeList
             handleShowModal={ handleShowModal }
-            results={ filtered } />
+            results={ sortedList } />
     </div>;
 
 };
