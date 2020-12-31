@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import EmployeeModal from "./EmployeeModal/EmployeeModal";
 import EmployeeList from "./EmployeeList/EmployeeList";
-import Search from "./Search";
-import SortBy from "./SortBy";
-
+import Search from "./SearchAndSort/Search";
+import SortBy from "./SearchAndSort/SortBy";
+// import "./style.css"
 
 const MainPage = ({ employees }) => {
 
@@ -82,6 +82,21 @@ const MainPage = ({ employees }) => {
         setSortedList({ employeeList: sortedList.employeeList });
     };
 
+    const sortByNum = (e) => {
+        e.preventDefault();
+        if (sortToggle === false) {
+            setSortToggle(true);
+            sortedList.employeeList.sort((a, b) => {
+                return a.id - b.id;
+            });
+        } else {
+            setSortToggle(false);
+            sortedList.employeeList.sort((a, b) => {
+                return b.id - a.id;
+            });
+        }
+    };
+
     const handleFilter = (data) => {
         const result = search.toUpperCase();
         const { name, id, role, gender, dateOfBirth, email } = data;
@@ -108,24 +123,23 @@ const MainPage = ({ employees }) => {
 
     const handleReset = (e) => {
         e.preventDefault();
+        setSearch("");
         setSortedList({ employeeList: employees });
     };
 
-    return <div>
+    return <main>
+        <h1>Employee Directory</h1>
 
         <form className="searchandsort">
-
             <Search
                 search={ search }
                 onChangeHandler={ onChangeHandler }
-                handleSearch={ handleSearch } />
-
-            <button onClick={ handleReset }>reset</button>
-            <br />
+                handleSearch={ handleSearch }
+                handleReset={ handleReset } />
             <SortBy
+                sortByNum={ sortByNum }
                 sortBy={ sortBy }
                 sortByDOB={ sortByDOB } />
-
         </form>
 
         <EmployeeModal
@@ -133,14 +147,26 @@ const MainPage = ({ employees }) => {
             employeeInfo={ modal.employeeInfo }
             handleCloseModal={ handleCloseModal } />
 
-        <ul>
-            { sortedList.employeeList.map(results => (
-                <EmployeeList
-                    handleShowModal={ handleShowModal }
-                    results={ results } />
-            )) }
-        </ul>
-    </div>;
+        <table>
+            <thead>
+                <tr className="employee">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Gender</th>
+                    <th>Date of birth</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                { sortedList.employeeList.map(results => (
+                    <EmployeeList
+                        handleShowModal={ handleShowModal }
+                        results={ results } />
+                )) }
+            </tbody>
+        </table>
+    </main>;
 
 };
 
