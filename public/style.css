@@ -1,0 +1,34 @@
+html, body {
+    font-family: 'Baloo 2', cursive;
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F1E8;
+    margin: 0;
+}
+button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+nav {
+    flex: 0 1 auto;
+    height: 5vh;
+    background-color: #6fb9eb;
+}
+main {
+    flex: 1 0 auto;
+    min-height: 85vh;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 5px;
+}
+main h1 {
+    margin: 0 0 20px 0;
+    font-size: 48px;
+}
+footer {
+    flex: 0 1 auto;
+    bottom: 0;
+    color: white;
+    background-color: #203e6a;
+    height: 5vh;
+}
