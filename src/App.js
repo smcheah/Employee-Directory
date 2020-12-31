@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MainPage from "./components/MainPage";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 import employees from "./data/employees.json";
 
@@ -12,7 +12,7 @@ const App = () => {
     return <Router>
         <Navbar />
         <MainPage { ...{ employees } } />
-        {/* <Footer /> */ }
+        <Footer />
     </Router >;
 };
 
