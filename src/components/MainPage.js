@@ -3,7 +3,6 @@ import EmployeeModal from "./EmployeeModal/EmployeeModal";
 import EmployeeList from "./EmployeeList/EmployeeList";
 import Search from "./SearchAndSort/Search";
 import SortBy from "./SearchAndSort/SortBy";
-// import "./style.css"
 
 const MainPage = ({ employees }) => {
 
@@ -25,6 +24,7 @@ const MainPage = ({ employees }) => {
     };
     const handleCloseModal = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         setModal({ isDisplayed: false });
     };
 
