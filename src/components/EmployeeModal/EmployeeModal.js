@@ -7,22 +7,25 @@ const EmployeeModal = ({ isDisplayed, employeeInfo, handleCloseModal }) => {
     if (isDisplayed) {
         toggleModal = "modal display-block";
 
-        const { name, image, role, gender, dateOfBirth, email } = employeeInfo;
+        const { id, name, image, role, gender, dateOfBirth, email } = employeeInfo;
 
         return <div className={ toggleModal }>
             <div className="modal-main">
-                <button onClick={ handleCloseModal }>close</button>
-                <img src={ image } alt="employee portrait" />
-
-                <h1>{ name }</h1>
-                <p>{ role }</p>
-
-                <p>Gender: { gender }</p>
-                <p>Date of birth: { dateOfBirth }</p>
-
-                <p>Contact: { email }</p>
-
-                <p>LinkedIn</p>
+                <div className="modal-header">
+                    <h1>{ name }</h1>
+                    <p>#{ id }</p>
+                </div>
+                <div className="modal-portrait">
+                    <img src={ image } alt="employee portrait" />
+                    <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
+                <div className="modal-info">
+                    <p>{ role }</p>
+                    <p>Gender: { gender }</p>
+                    <p>Date of birth: { dateOfBirth }</p>
+                    <p>Contact: { email }</p>
+                </div>
+                <button onClick={ handleCloseModal } className="modal-close-button">close</button>
             </div>
         </div>;
     }
