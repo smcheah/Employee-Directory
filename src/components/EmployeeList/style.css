@@ -1,24 +1,28 @@
 /* employee list */
 table {
-    border-collapse: collapse;
-    margin: 10px auto;
-    width: 100%;
+	border-collapse: collapse;
+	margin: 10px auto;
+	width: 100%;
 }
 .employee {
-    list-style-type: none;
+	list-style-type: none;
 }
 .employee:hover :not(th) {
-    backdrop-filter: brightness(0.9);
-    cursor: pointer;
+	backdrop-filter: brightness(97%);
+	cursor: pointer;
 }
 .employee * {
-    border: black solid 1px;
-    padding: 5px 10px;
+	border: black solid 1px;
+	padding: 5px 10px;
 }
 .employee td {
-    word-wrap: break-word;
-    
+	word-wrap: break-word;
 }
 .employee td:last-of-type {
-    word-break: break-all;
+	word-break: break-all;
+}
+@media screen and (max-width: 620px) {
+    .employee * {
+        padding: 5px 5px;
+    }
 }

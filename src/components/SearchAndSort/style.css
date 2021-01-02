@@ -1,20 +1,20 @@
 .searchandsort {
 	display: flex;
 	flex-wrap: wrap;
-    justify-content: space-between;
+	justify-content: space-between;
 	margin: 0 auto;
 }
 .searchandsort button,
 .searchandsort input {
 	font-size: 16px;
-    margin-left: 5px;
-    padding: 0 7px;
+	margin-left: 10px;
+	padding: 1px 8px;
 }
 .searchandsort input {
-    width: 400px;
+	width: 400px;
 }
 .searchandsort label {
-	margin-right: 5px;
+	margin-right: 3px;
 }
 .search *,
 .sort-by * {
@@ -23,7 +23,13 @@
 	font-size: 20px;
 }
 .search button:first-of-type {
-    background-color: rgb(215, 245, 255);
-    border: 1px solid black;
-    border-radius: 2px;
+	background-color: #031926;
+	border: 1px solid black;
+	border-radius: 2px;
+	color: white;
+}
+@media screen and (max-width: 620px) {
+    .searchandsort input {
+        width: 95%;
+    }
 }
