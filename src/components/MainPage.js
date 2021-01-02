@@ -113,6 +113,7 @@ const MainPage = ({ employees }) => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setSortedList({ employeeList: employees });
         setSearch(search);
 
         const result = await sortedList.employeeList.filter(handleFilter);
