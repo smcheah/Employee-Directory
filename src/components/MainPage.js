@@ -118,6 +118,7 @@ const MainPage = ({ employees }) => {
 
         const result = await sortedList.employeeList.filter(handleFilter);
         setSortedList({ employeeList: result });
+        setSearch("");
     };
 
     const onChangeHandler = (e) => setSearch(e.target.value);
