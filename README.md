@@ -1,5 +1,4 @@
-
-# Employee Directory ![GitHub top language](https://img.shields.io/github/languages/top/smcheah/employee-directory) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bc5d7c8eca5e44b4bd8a868cc6fdf353)](https://www.codacy.com/gh/smcheah/employee-directory/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=smcheah/employee-directory&amp;utm_campaign=Badge_Grade) [![Netlify Status](https://api.netlify.com/api/v1/badges/a1abb9f1-4e74-4071-9c26-5a11f039d5a7/deploy-status)](https://app.netlify.com/sites/cocky-ride-50e407/deploys)
+# Employee Directory ![GitHub top language](https://img.shields.io/github/languages/top/smcheah/employee-directory) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bc5d7c8eca5e44b4bd8a868cc6fdf353)](https://www.codacy.com/gh/smcheah/employee-directory/dashboard?utm_source=github.com&utm_medium=referral&utm_content=smcheah/employee-directory&utm_campaign=Badge_Grade) [![Netlify Status](https://api.netlify.com/api/v1/badges/a1abb9f1-4e74-4071-9c26-5a11f039d5a7/deploy-status)](https://app.netlify.com/sites/cocky-ride-50e407/deploys)
 
 ## Description <!-- omit in toc -->
 
@@ -19,10 +18,9 @@ An employee or manager would benefit greatly from being able to view a company's
 -   Has a satisfying overview of a company's employee data, as well as more in depth non-sensitive details in a modal pop out
 -   Flexible and responsive page view
 
-| Technology  | Description                                                     | Link                                   |
-| ----------- | --------------------------------------------------------------- | -------------------------------------- |
-| Node.js     | JavaScript runtime built on Chrome's V8 JavaScript engine       | https://nodejs.org/en/                 |
-| Inquirer.js | A collection of common interactive command line user interfaces | https://www.npmjs.com/package/inquirer |
+| Technology | Description                                                 | Link                 |
+| ---------- | ----------------------------------------------------------- | -------------------- |
+| React      | React is a JavaScript library for building user interfaces. | https://reactjs.org/ |
 
 ## Usage Demo :gift:
 
@@ -36,7 +34,7 @@ MIT
 
 ## Contributing :clinking_glasses:
 
-- The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard.
+-   The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard.
 
 Feel free to create a new issue or alternatively, make a pull request!
 
