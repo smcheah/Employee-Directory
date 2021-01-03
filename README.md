@@ -1,5 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a1abb9f1-4e74-4071-9c26-5a11f039d5a7/deploy-status)](https://app.netlify.com/sites/cocky-ride-50e407/deploys)
-# Employee Directory ![GitHub top language](https://img.shields.io/github/languages/top/smcheah/employee-directory)
+
+# Employee Directory ![GitHub top language](https://img.shields.io/github/languages/top/smcheah/employee-directory) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bc5d7c8eca5e44b4bd8a868cc6fdf353)](https://www.codacy.com/gh/smcheah/employee-directory/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=smcheah/employee-directory&amp;utm_campaign=Badge_Grade) [![Netlify Status](https://api.netlify.com/api/v1/badges/a1abb9f1-4e74-4071-9c26-5a11f039d5a7/deploy-status)](https://app.netlify.com/sites/cocky-ride-50e407/deploys)
 
 ## Description <!-- omit in toc -->
 
@@ -28,7 +28,7 @@ An employee or manager would benefit greatly from being able to view a company's
 
 Deployed app can be found here: https://cocky-ride-50e407.netlify.app
 
-![demo image](https://github.com/smcheah/employee-directory/blob/main/demo.PNG)
+![demo image](https://github.com/smcheah/employee-directory/blob/main/public/demo.PNG)
 
 ## License ![License](https://img.shields.io/github/license/smcheah/employee-directory)
 
